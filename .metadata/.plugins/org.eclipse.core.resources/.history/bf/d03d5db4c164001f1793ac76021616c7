@@ -1,0 +1,5 @@
+package com.poc.reactive.demo.repository;
+
+public class JobRepository {
+
+}

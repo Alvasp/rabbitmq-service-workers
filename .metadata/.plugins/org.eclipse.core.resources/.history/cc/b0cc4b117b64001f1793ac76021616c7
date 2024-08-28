@@ -1,0 +1,13 @@
+package com.poc.reactive.demo.services;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+
+public class WaterMarkAdderService implements ImageHandler {
+
+	@Override
+	public void handleImage(String filename) throws ImageHandlingException{
+		// TODO Auto-generated method stub
+
+	}
+
+}

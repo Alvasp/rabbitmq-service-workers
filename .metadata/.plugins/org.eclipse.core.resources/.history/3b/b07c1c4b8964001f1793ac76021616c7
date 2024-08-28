@@ -1,0 +1,26 @@
+package com.poc.reactive.demo.services;
+
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
+
+public class HandlerTests {
+		
+	@Test
+	void imageResizerTest() {
+		FileSystemService fileSystemMock = mock(FileSystemService.class);
+		
+		when(fileSystemMock.getFileFromPath(anyString())).thenReturn(mock(File.class));
+		
+		ImageHandler handler = new ImageResizerService(fileSystemMock);		
+		
+		handler.handleImage("asd");
+	}
+
+	
+	
+}

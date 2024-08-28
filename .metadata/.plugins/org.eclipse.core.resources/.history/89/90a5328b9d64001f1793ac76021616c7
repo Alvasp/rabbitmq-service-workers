@@ -1,0 +1,36 @@
+package com.poc.reactive.demo.services;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class FileSystemService {
+
+	public File getFileFromPath(String path) throws IllegalArgumentException {
+		File file = new File(path);
+		
+		if(!file.exists()) {
+			throw new IllegalArgumentException("File not found");
+		}
+		
+		return file;
+	}
+	
+	
+	public void saveToPath(BufferedImage image, String path, String filename) throws IllegalArgumentException{
+		File outputFile =  new File(path + "resized_" + filename);
+		List<String> asd  = Arrays.asList(filename.split("."));
+	    try {
+			ImageIO.write(image, asd.getLast(), outputFile);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("error writing file");
+		}
+	}
+}

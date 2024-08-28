@@ -1,0 +1,5 @@
+package com.poc.reactive.demo.exceptions;
+
+public class ImageHandlingException extends RuntimeException {
+
+}

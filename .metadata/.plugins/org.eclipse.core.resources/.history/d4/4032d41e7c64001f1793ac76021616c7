@@ -1,0 +1,36 @@
+package com.poc.reactive.demo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.poc.reactive.demo.messaging.RabbitAmqpTutorialsRunner;
+
+@SpringBootApplication
+@EnableScheduling
+public class DemoApplication {
+
+	@Profile("usage_message")
+	@Bean
+	CommandLineRunner usage() {
+		return args -> {
+			System.out.println("This app uses Spring Profiles control its behavior.\n");
+			System.out.println(
+					"Sample usage: java -jar rabbit-tutorials.jar --spring.profiles.active=hello-world,sender");
+		};
+	}
+
+    @Profile("!usage_message")
+    @Bean
+    CommandLineRunner tutorial() {
+		return new RabbitAmqpTutorialsRunner();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	}
+
+}

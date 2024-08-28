@@ -1,0 +1,61 @@
+package com.poc.reactive.demo.controller;
+
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.poc.reactive.demo.dto.AddJobRequest;
+import com.poc.reactive.demo.messaging.HandleImageRequestMessage;
+import com.poc.reactive.demo.messaging.HandleImageResponseMessage;
+import com.poc.reactive.demo.messaging.Resolution;
+import com.poc.reactive.demo.repository.JobRepository;
+
+@RestController(value = "jobs")
+public class ImageJobController {
+
+	@Autowired
+	RabbitTemplate template;
+
+	@Autowired
+	JobRepository repo;
+
+	@GetMapping
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public ResponseEntity<HandleImageResponseMessage> getJob(String uuid) {
+		Optional<HandleImageResponseMessage> response = repo.getJOBByUUID(uuid);
+
+		if (response.isPresent()) {
+			return new ResponseEntity(response.get(), HttpStatusCode.valueOf(200));
+		}
+
+		return new ResponseEntity(null, HttpStatusCode.valueOf(404));
+	}
+
+	@PostMapping
+	public String addJob(@RequestBody AddJobRequest request) {
+
+		HandleImageRequestMessage message = new HandleImageRequestMessage(request.filename(),
+				new Resolution(request.resolution().width(), request.resolution().height()));
+
+		String correlationUUID = UUID.randomUUID().toString();
+
+		template.convertAndSend("image-processing-exchange", request.type().getDescription(), message,
+				messagePostProcessor -> {
+					messagePostProcessor.getMessageProperties().setReplyTo("image-processing-queue-tasks-response");
+					messagePostProcessor.getMessageProperties().setCorrelationId(correlationUUID);
+					return messagePostProcessor;
+				});
+
+		return correlationUUID;
+
+	}
+
+}

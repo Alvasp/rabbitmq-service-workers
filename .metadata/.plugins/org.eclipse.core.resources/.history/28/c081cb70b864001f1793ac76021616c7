@@ -1,0 +1,5 @@
+package com.poc.reactive.demo.config;
+
+public class MessagingConfig {
+
+}

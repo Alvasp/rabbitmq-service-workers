@@ -1,0 +1,22 @@
+package com.poc.reactive.demo.messaging;
+
+import org.springframework.amqp.core.AnonymousQueue;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class Tut3Config {
+
+	@Bean
+	 DirectExchange fanout() {
+		return new DirectExchange("tut.fanout");
+	}
+
+	@Bean
+	 Queue autoDeleteQueue1() {
+		return new AnonymousQueue();
+	}
+
+}

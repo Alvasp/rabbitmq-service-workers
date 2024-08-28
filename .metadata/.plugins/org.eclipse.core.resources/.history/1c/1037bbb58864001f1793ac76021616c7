@@ -1,0 +1,18 @@
+package com.poc.reactive.demo.services;
+
+import org.junit.jupiter.api.Test;
+
+public class HandlerTests {
+	
+	
+	@Test
+	void imageResizerTest() {
+		ImageHandler hanlder = new ImageResizerService();
+		
+		handler.
+	}
+
+	@Test
+	void waterMarkTest() {}ﬁ
+	
+}

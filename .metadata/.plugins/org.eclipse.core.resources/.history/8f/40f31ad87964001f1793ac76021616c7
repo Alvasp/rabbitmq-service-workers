@@ -1,0 +1,14 @@
+package com.poc.reactive.demo.services;
+
+import org.springframework.stereotype.Service;
+
+
+public class ImageResizerService implements ImageHandler {
+
+	@Override
+	public void handleImage(String path) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

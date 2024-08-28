@@ -1,0 +1,41 @@
+package com.poc.reactive.demo.services;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+
+import net.coobird.thumbnailator.Thumbnails;
+
+public class ImageResizerService extends ImageHandler {
+
+	public ImageResizerService(FileSystemService fileSystem) {
+		super(fileSystem);
+	}
+
+	@Override
+	public void handleImage(String filename) throws ImageHandlingException{
+		
+		try {
+			String file = this.FIXED_STORAGE_PATH + filename;
+			
+			File input = this.fileSystemService.getFileFromPath(file);
+			
+			
+			List<BufferedImage> output =  Thumbnails.of(input.listFiles())
+		    .size(1240, 860)
+		    .outputFormat("jpg")
+		    .asBufferedImages();
+			
+			for (BufferedImage image : output) {
+			  this.fileSystemService.saveToPath(image, filename);
+			}
+			
+		}catch(Exception e) {
+			throw new ImageHandlingException("unable to resize image", e);
+		}
+		
+	}
+
+}

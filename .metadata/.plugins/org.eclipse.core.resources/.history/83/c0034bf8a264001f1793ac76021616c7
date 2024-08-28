@@ -1,0 +1,50 @@
+package com.poc.reactive.demo.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.retry.backoff.FixedBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+
+@Configuration
+public class MessagingConfig {
+
+	@Bean
+	DirectExchange fanout() {
+		return new DirectExchange("image-handler");
+	}
+
+	@Bean
+	Queue autoDeleteQueue1() {
+		return new Queue("image-handler-queue", true);
+	}
+
+	@Bean
+	Binding binding1a(DirectExchange topic, Queue autoDeleteQueue1, Environment env) {
+		String routingKey = env.getActiveProfiles()[0]; // Use the first active profile as the routing key
+
+		return BindingBuilder.bind(autoDeleteQueue1).to(topic).with(routingKey);
+	}
+
+	@Bean
+	RetryTemplate retryTemplate() {
+		RetryTemplate retryTemplate = new RetryTemplate();
+
+		SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
+		retryPolicy.setMaxAttempts(3); 
+
+		FixedBackOffPolicy backOffPolicy = new FixedBackOffPolicy();
+		backOffPolicy.setBackOffPeriod(2000); 
+
+		retryTemplate.setRetryPolicy(retryPolicy);
+		retryTemplate.setBackOffPolicy(backOffPolicy);
+
+		return retryTemplate;
+	}
+
+}

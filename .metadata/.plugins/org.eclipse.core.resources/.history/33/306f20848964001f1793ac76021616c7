@@ -1,0 +1,30 @@
+package com.poc.reactive.demo.services;
+
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.net.URL;
+import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ResourceLoader;
+
+public class HandlerTests {
+		
+	@Test
+	void imageResizerTest() {
+		FileSystemService fileSystemMock = mock(FileSystemService.class);
+		
+		URL resource = ResourceLoader.class.getClassLoader().getResource("watermark.png");
+		
+		when(fileSystemMock.getFileFromPath(anyString())).thenReturn(Paths.get(resource.getPath()).toFile());
+		
+		ImageHandler handler = new ImageResizerService(fileSystemMock);		
+		
+		handler.handleImage("asd");
+	}
+
+	
+	
+}

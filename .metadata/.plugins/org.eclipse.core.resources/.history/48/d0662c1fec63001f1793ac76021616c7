@@ -1,0 +1,5 @@
+package com.poc.reactive.demo.messaging;
+
+public class Tut2Receiver {
+
+}

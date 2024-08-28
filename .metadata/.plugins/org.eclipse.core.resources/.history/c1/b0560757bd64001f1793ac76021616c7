@@ -1,0 +1,29 @@
+package com.poc.reactive.demo.config;
+
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
+
+public class MessagingConfig {
+
+	@Bean
+	DirectExchange direct() {
+		return new DirectExchange("image-processing-exchange");
+	}
+
+	@Bean
+	Queue autoDeleteQueue1() {
+		return new Queue("image-processing-queue-tasks", true);
+	}
+
+	@Bean
+	Binding binding1a(DirectExchange topic, Queue autoDeleteQueue1, Environment env) {
+		String routingKey = env.getActiveProfiles()[0]; // Use the first active profile as the routing key
+
+		return BindingBuilder.bind(autoDeleteQueue1).to(topic).with(routingKey);
+	}
+
+}

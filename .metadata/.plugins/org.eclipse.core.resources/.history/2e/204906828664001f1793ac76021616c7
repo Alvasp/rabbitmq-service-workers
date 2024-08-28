@@ -1,0 +1,25 @@
+package com.poc.reactive.demo.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import com.poc.reactive.demo.services.ImageHandler;
+import com.poc.reactive.demo.services.ImageResizerService;
+
+@Configuration
+public class BeansConfig {
+	
+	@Profile("resizer")
+    @Bean
+    ImageHandler resizerImageHanlder() {
+		return new ImageResizerService();
+	}
+
+	@Profile("watermark")
+    @Bean
+    ImageHandler waterMarkImageHanlder() {
+		return new ImageResizerService();
+	}
+
+}

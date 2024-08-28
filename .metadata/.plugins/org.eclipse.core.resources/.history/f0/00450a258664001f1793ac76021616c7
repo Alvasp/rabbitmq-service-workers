@@ -1,0 +1,17 @@
+package com.poc.reactive.demo.services;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+
+public abstract class ImageHandler {
+
+	public static String FIXED_STORAGE_PATH = "";
+	
+	protected FileSystemService fileSystemService;
+	
+	abstract void handleImage(String filename) throws ImageHandlingException;
+	
+	public ImageHandler(FileSystemService fileSystem) {
+		this.fileSystemService = fileSystem;
+	}
+	
+}

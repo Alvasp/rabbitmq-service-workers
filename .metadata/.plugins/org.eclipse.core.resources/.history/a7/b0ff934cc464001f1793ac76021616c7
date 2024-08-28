@@ -1,0 +1,75 @@
+package com.poc.reactive.demo.messaging;
+
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.RecoveryCallback;
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.poc.reactive.demo.services.ImageHandler;
+
+@Component
+public class Receiver {
+	@Autowired
+	private RetryTemplate retryTemplate;
+
+	@Autowired
+	ObjectMapper mapper;
+
+	@Autowired
+	private ImageHandler handler;
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+
+	@RabbitListener(queues = "#{autoDeleteQueue1.name}")
+	public void receive1(Message message) throws Exception {
+
+		retryTemplate.execute(new RetryCallback<Void, Exception>() {
+			@Override
+			public Void doWithRetry(RetryContext context) throws Exception {
+				System.out.println("message received, delegating to handler:  " + message.toString());
+
+				HandleImageRequestMessage body = mapper.readValue(new String(message.getBody()),
+						HandleImageRequestMessage.class);
+
+				handler.handleImage(body);
+
+				reply(message, new HandleImageResponseMessage(true, null));
+
+				return null;
+			}
+
+		}, new RecoveryCallback<Void>() {
+			@Override
+			public Void recover(RetryContext context) throws Exception {
+				System.err.println("Max retries reached, handling recovery...");
+
+				reply(message, new HandleImageResponseMessage(false, context.getLastThrowable().getMessage()));
+				System.out.println(context.getLastThrowable());
+				return null;
+			}
+		});
+	}
+
+	private void reply(Message message, HandleImageResponseMessage response) {
+		String correlationId = new String(message.getMessageProperties().getCorrelationId());
+		String replyToQueue = message.getMessageProperties().getReplyTo();
+
+		System.out.println("sending reply to " + correlationId + " " + replyToQueue);
+		// Set the correlation ID for the reply message
+
+		rabbitTemplate.convertAndSend("", replyToQueue, response, messagePostProcessor -> {
+			messagePostProcessor.getMessageProperties().setReplyTo(replyToQueue);
+			messagePostProcessor.getMessageProperties().setCorrelationId(correlationId);
+			return messagePostProcessor;
+		});
+
+	}
+
+}

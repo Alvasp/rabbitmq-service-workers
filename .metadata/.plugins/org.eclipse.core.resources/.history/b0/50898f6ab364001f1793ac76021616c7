@@ -1,0 +1,50 @@
+package com.poc.reactive.demo.services;
+
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
+
+import javax.imageio.ImageIO;
+
+import org.springframework.core.io.ClassPathResource;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+import com.poc.reactive.demo.messaging.HandleImageMessage;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.geometry.Positions;
+
+public class WaterMarkAdderService extends ImageHandler {
+
+	public WaterMarkAdderService(FileSystemService fileSystem) {
+		super(fileSystem);
+	}
+
+	@Override
+	public void handleImage(HandleImageMessage message) throws ImageHandlingException {
+		System.out.println("watermark start");
+
+		try {
+			Thread.sleep(2000); // simulates some expensive operation
+
+			String file = this.FIXED_STORAGE_PATH + message.filename();
+
+			File input = this.fileSystemService.getFileFromPath(file);
+
+			List<BufferedImage> output = Thumbnails.of(input)
+					.watermark(Positions.BOTTOM_RIGHT,
+							ImageIO.read(new ClassPathResource("watermark.png").getInputStream()), 0.5f)
+					.size(message.resolution().width(), message.resolution().height()).asBufferedImages();
+
+			for (BufferedImage image : output) {
+				this.fileSystemService.saveToPath(image, this.FIXED_STORAGE_PATH + "watermarked_" + message.filename());
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ImageHandlingException("unable to add watermark to image", e);
+		}
+
+	}
+
+}

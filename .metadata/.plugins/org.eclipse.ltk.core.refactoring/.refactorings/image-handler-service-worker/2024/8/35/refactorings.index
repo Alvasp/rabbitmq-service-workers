@@ -1,0 +1,20 @@
+1724695817272	Move compilation unit
+1724696390743	Rename resource 'application.properties'
+1724696408083	Delete element
+1724704141697	Rename package 'tut1'
+1724766348723	Rename type 'ThumbnailAdderService'
+1724767885935	Delete elements
+1724767902934	Move compilation unit
+1724767910178	Rename package 'com.poc.reactive.demo.conf'
+1724767928429	Rename type 'Tut1Config'
+1724767941874	Move compilation unit
+1724767973823	Delete element
+1724770443929	Move compilation unit
+1724770454941	Rename type 'Tut3Config'
+1724770466499	Rename type 'Tut3Receiver'
+1724783584976	Rename type 'ImageHandlerMessage'
+1724788464241	Rename type 'Message'
+1724790722170	Rename type 'HandleImageMessage'
+1724790735275	Copy compilation unit
+1724796262693	Copy compilation units
+1724797668614	Copy compilation unit

@@ -1,0 +1,30 @@
+package com.poc.reactive.demo.services;
+
+import java.io.File;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
+
+public class ImageResizerService extends ImageHandler {
+
+	public ImageResizerService(FileSystemService fileSystem) {
+		super(fileSystem);
+	}
+
+	@Override
+	public void handleImage(String filename) throws ImageHandlingException{
+		
+		try {
+			Thumbnails.of(new File(ImageHandler.FIXED_STORAGE_PATH + filename).listFiles())
+		    .size(1240, 860)
+		    .outputFormat("jpg")
+		    .toFiles(Rename.SUFFIX_DOT_THUMBNAIL);
+		}catch(Exception e) {
+			throw new ImageHandlingException("unable to resize image", e);
+		}
+		
+	}
+
+}

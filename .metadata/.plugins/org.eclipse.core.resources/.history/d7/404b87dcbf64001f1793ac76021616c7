@@ -1,0 +1,5 @@
+package com.poc.reactive.demo.dto;
+
+public record AddJobRequest() {
+
+}

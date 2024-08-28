@@ -1,0 +1,22 @@
+package com.poc.reactive.demo.messaging;
+
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+
+public class Receiver {
+
+	@RabbitListener(queues = "#{autoDeleteQueue1.name}")
+	public void receive1(String in) throws InterruptedException {
+		receive(in, 1);
+	}
+
+	public void receive(String in, int receiver) throws InterruptedException {
+		System.out.println("instance " + receiver + " [x] Received '" + in + "'");
+		doWork(in);
+		watch.stop();
+		System.out.println("instance " + receiver + " [x] Done in "
+		    + watch.getTotalTimeSeconds() + "s");
+	}
+
+	
+
+}

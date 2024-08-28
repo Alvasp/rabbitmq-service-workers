@@ -1,0 +1,20 @@
+package com.poc.reactive.demo.services;
+
+import java.io.File;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class FileSystemService {
+
+	public File getFileFromPath(String path) throws IllegalArgumentException {
+		File file = new File(path);
+		
+		if(!file.exists()) {
+			throw new IllegalArgumentException("File not found");
+		}
+		
+		return file;
+	}
+	
+}

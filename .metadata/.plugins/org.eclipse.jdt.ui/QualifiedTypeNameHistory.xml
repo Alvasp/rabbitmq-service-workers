@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.amqp.rabbit.connection.ConnectionFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+    <fullyQualifiedTypeName name="org.springframework.amqp.core.Queue"/>
+    <fullyQualifiedTypeName name="java.lang.Throwable"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.services.ImageHandler"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.messaging.RabbitAmqpTutorialsRunner"/>
+    <fullyQualifiedTypeName name="org.springframework.amqp.core.Binding"/>
+    <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.services.ImageResizerService"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.services.FileSystemService"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.exceptions.ImageHandlingException"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.services.WaterMarkAdderService"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.security.cert.Extension"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.messaging.Message"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.messaging.HandleImageResponseMessage"/>
+    <fullyQualifiedTypeName name="ch.qos.logback.classic.pattern.MessageConverter"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.messaging.Resolution"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="com.poc.reactive.demo.repository.JobRepository"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="org.springframework.http.HttpStatusCode"/>
+    <fullyQualifiedTypeName name="org.springframework.amqp.core.Message"/>
+    <fullyQualifiedTypeName name="com.rabbitmq.client.impl.recovery.RetryContext"/>
+    <fullyQualifiedTypeName name="org.springframework.retry.RetryContext"/>
+    <fullyQualifiedTypeName name="io.swagger.models.Contact"/>
+    <fullyQualifiedTypeName name="io.swagger.v3.oas.models.info.Contact"/>
+</qualifiedTypeNameHistroy>

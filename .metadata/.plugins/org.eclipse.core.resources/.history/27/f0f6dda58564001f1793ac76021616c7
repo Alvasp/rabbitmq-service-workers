@@ -1,0 +1,11 @@
+package com.poc.reactive.demo.services;
+
+import com.poc.reactive.demo.exceptions.ImageHandlingException;
+
+public interface ImageHandler {
+
+	public static String FIXED_STORAGE_PATH = "";
+	
+	void handleImage(String filename) throws ImageHandlingException;
+	
+}

@@ -1,0 +1,7 @@
+package com.poc.reactive.demo.services;
+
+public interface ImageHandler {
+
+	void handleImage(String filename);
+	
+}

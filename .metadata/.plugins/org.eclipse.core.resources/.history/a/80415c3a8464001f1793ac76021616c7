@@ -1,0 +1,37 @@
+package com.poc.reactive.demo.config;
+
+import org.springframework.amqp.core.AnonymousQueue;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+@Configuration
+public class Tut3Config {
+
+	@Bean
+	 DirectExchange fanout() {
+		return new DirectExchange("image-handler");
+	}
+
+	@Bean
+	 Queue autoDeleteQueue1() {
+		return new AnonymousQueue();
+	}
+	
+	@Bean
+	 Binding binding1a(DirectExchange topic,
+	    Queue autoDeleteQueue1, Environment env) {
+        String routingKey = env.getActiveProfiles()[0]; // Use the first active profile as the routing key
+
+		return BindingBuilder.bind(autoDeleteQueue1)
+		    .to(topic)
+		    .with(routingKey);
+	}
+	
+
+
+}
