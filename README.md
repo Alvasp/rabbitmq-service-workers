@@ -1,9 +1,9 @@
 
 # Spring AMQP demo
  
-Sample app that demostrate an event driven design, using rabbitMQ + spring AMQP.
+Sample app that demostrates an event driven design, using rabbitMQ + spring AMQP.
 
-The chosen use case illustrate how to async process image related tasks (resizing or add watermark in this case). This is done using a direct exchange and 2 specific queues, one for each type of job. This design also uses a request / reply design pattern to let know the UI how the transformation job ended.
+The chosen use case illustrate how to asynchronously process image related tasks (resizing or add watermark in this case). This is done using a direct exchange and 2 specific queues, one for each type of job. This design also uses a request / reply design pattern to let know the UI how the transformation job ended.
 
 
 ## Screenshots
