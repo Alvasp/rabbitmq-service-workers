@@ -5,26 +5,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.poc.reactive.demo.services.FileSystemService;
-import com.poc.reactive.demo.services.ImageHandler;
-import com.poc.reactive.demo.services.ImageResizerService;
-import com.poc.reactive.demo.services.WaterMarkAdderService;
+import com.poc.reactive.demo.services.ITransformationJob;
+import com.poc.reactive.demo.services.impl.TransformationResize;
+import com.poc.reactive.demo.services.impl.TransformationWaterMark;
 
 @Configuration
 public class BeansConfig {
-	
+
 	@Profile("resizer")
 	@Bean
-	ImageHandler resizerImageHandler(FileSystemService service) {
-	    return new ImageResizerService(service);
+	ITransformationJob resizerImageHandler() {
+		return new TransformationResize();
 	}
 
 	@Profile("watermark")
 	@Bean
-	ImageHandler watermarkImageHandler(FileSystemService service) {
-	    return new WaterMarkAdderService(service); 
+	ITransformationJob watermarkImageHandler() {
+		return new TransformationWaterMark();
 	}
-	
+
 	@Bean
 	ObjectMapper objectMapper() {
 		return new ObjectMapper();

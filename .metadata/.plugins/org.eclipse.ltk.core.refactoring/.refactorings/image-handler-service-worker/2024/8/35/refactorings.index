@@ -18,3 +18,40 @@
 1724790735275	Copy compilation unit
 1724796262693	Copy compilation units
 1724797668614	Copy compilation unit
+1725025574325	Copy compilation unit
+1725026050904	Delete element
+1725026070994	Delete element
+1725026087642	Move compilation units
+1725027182288	Delete element
+1725027277406	Move compilation units
+1725027284407	Delete element
+1725027300227	Rename type 'HandleImageRequestMessage'
+1725027307314	Rename type 'HandleImageResponseMessage'
+1725027375775	Rename type 'ImageHandler'
+1725027389458	Rename type 'ImageResizerService'
+1725027397354	Rename type 'WaterMarkAdderService'
+1725027416333	Rename type 'ImageConverionJob'
+1725027442665	Rename type 'ImageHandlerJob'
+1725027454213	Rename type 'ImageResizerJobService'
+1725027462810	Rename type 'WaterMarkAdderJobService'
+1725027469925	Rename type 'TransformationResizeJob'
+1725027482935	Rename type 'IImageConversionService'
+1725027624279	Rename type 'ImageTransformation'
+1725027632972	Rename type 'TransformationJob'
+1725027758385	Delete element
+1725027775015	Rename type 'ImageTransformationHandler'
+1725029530006	Delete element
+1725030197589	Rename type 'TransformationHandler'
+1725030945377	Move compilation unit
+1725030976997	Rename type 'Receiver'
+1725031253764	Copy compilation unit
+1725031273219	Copy compilation unit
+1725060077096	Copy package
+1725060095027	Delete element
+1725060101592	Move compilation units
+1725060108141	Delete element
+1725062525254	Rename type 'ImageHandleInput'
+1725062606260	Rename type 'ImageHandleInputTest'
+1725062953213	Rename type 'ImageHandleInput'
+1725063246964	Rename type 'ImageHandleInputTest'
+1725112015202	Delete element

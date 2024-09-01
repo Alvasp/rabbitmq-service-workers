@@ -10,7 +10,5 @@ logging:
   level:
     org: ERROR
 
-tutorial:
-  client:
-    duration: 30000
-
+app:
+  localrepository: ${APP_LOCALREPOSITORY}

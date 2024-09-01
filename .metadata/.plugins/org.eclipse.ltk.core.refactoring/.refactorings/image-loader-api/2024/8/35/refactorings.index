@@ -1,3 +1,23 @@
 1724795938356	Delete element
 1724796275880	Delete element
 1724798414533	Rename resource 'application.properties'
+1725025803215	Move compilation units
+1725026016102	Rename compilation unit 'FileSystemService.java'
+1725026058928	Copy compilation unit
+1725026063229	Copy compilation unit
+1725031097986	Rename type 'HandleImageRequestMessage'
+1725031106396	Rename type 'HandleImageResponseMessage'
+1725031114011	Move compilation units
+1725031122277	Rename type 'Receiver'
+1725031149202	Rename package 'com.poc.reactive.demo.dto'
+1725031252203	Delete element
+1725031267250	Delete element
+1725031318996	Move compilation unit
+1725032458410	Rename field 'repo'
+1725032468065	Rename field 'fileRepositoryService'
+1725032478455	Rename field 'template'
+1725059924512	Rename type 'HandleMessageInput'
+1725059938278	Rename type 'HandleMessageOutput'
+1725059955135	Rename type 'HandleMessageOutputMessage'
+1725111243244	Delete element
+1725111273984	Delete element

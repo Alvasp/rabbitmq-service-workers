@@ -8,6 +8,11 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="ObjectMapper"/>
+			<item value="HandleMessageInput"/>
+			<item value="com.poc.reactive.demo.messaging.dto.HandleMessageInput"/>
+			<item value="flux"/>
+			<item value="reactive"/>
 			<item value="unit"/>
 			<item value="org.springframework.amqp.core.Queue"/>
 			<item value="hello-world"/>

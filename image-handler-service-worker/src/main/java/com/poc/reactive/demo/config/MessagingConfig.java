@@ -26,13 +26,13 @@ public class MessagingConfig {
 	static class Resize {
 		@Bean
 		Queue autoDeleteQueue1() {
-			return new Queue("image-processing-queue-tasks-resizer", true);
+			return new Queue("image-processing-queue-tasks-resize", true);
 		}
 
 		@Bean
 		Binding binding1a(DirectExchange topic, Queue autoDeleteQueue1, Environment env) {
 
-			return BindingBuilder.bind(autoDeleteQueue1).to(topic).with("resizer");
+			return BindingBuilder.bind(autoDeleteQueue1).to(topic).with("resize");
 		}
 	}
 
