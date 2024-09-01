@@ -8,10 +8,8 @@ The chosen use case illustrate how to asynchronously process image related tasks
 
 ## Screenshots
 
-Highlevel design
 ![App Screenshot](/image-loader-ui/public/diagram.png)
 
-UI Design
 ![App Screenshot](/image-loader-ui/public/ui.png)
 
 ## Dependencies
